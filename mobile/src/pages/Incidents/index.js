@@ -11,6 +11,7 @@ import styles from "./styles";
 
 export default function Incidents() {
     const [incidents, setIncidents] = useState([]);
+    const [incidentsLength, setIncidentsLength] = useState(0);
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -25,8 +26,8 @@ export default function Incidents() {
         if (loading) {
             return;
         }
-
-        if (total > 0 && incidents.length === total) {
+        if (total > 0 && parseInt(incidents.length) === parseInt(total)) {
+            console.log("saiu");
             return;
         }
 
@@ -60,8 +61,8 @@ export default function Incidents() {
             <FlatList
                 data={incidents}
                 style={styles.incidentsList}
-                keyExtractor={incident => String(incident.id)}
-                showsVerticalScrollIndicator={true}
+                keyExtractor={(incident, index) => String(index)}
+                showsVerticalScrollIndicator={false}
                 onEndReached={loadIncidents}
                 onEndReachedThreshold={0.2}
                 renderItem={({ item: incident }) => (
