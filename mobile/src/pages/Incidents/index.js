@@ -27,7 +27,6 @@ export default function Incidents() {
             return;
         }
         if (total > 0 && parseInt(incidents.length) === parseInt(total)) {
-            console.log("saiu");
             return;
         }
 
